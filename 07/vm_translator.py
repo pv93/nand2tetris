@@ -49,8 +49,119 @@ def parse_arithmetic_command(vm_command):
   @SP
   M=M-1
   D=D-M
+  @TRUE
   D ; JEQ
+  @FALSE
+  0 ; JEQ
+  
+  (TRUE)
+  @SP
+  M=0
+  @END
+  0 ; JMP
+
+  (FALSE)
+  @SP
+  M=-1
+  @END
+  0 ; JMP
+  
+  (END)
+  @SP
+  M=M+1
   """
+
+  GT_COMMAND="""
+  @SP
+  M=M-1
+  A=M
+  D=M
+  @SP
+  M=M-1
+  D=M-D
+  @TRUE
+  D ; JGT
+  @FALSE
+  0 ; JEQ
+
+  (TRUE)
+  @SP
+  M=0
+  @END
+  0 ; JMP
+
+  (FALSE)
+  @SP
+  M=-1
+  @END
+  0 ; JMP
+  
+  (END)
+  @SP
+  M=M+1
+  """
+  LT_COMMAND="""
+  @SP
+  M=M-1
+  A=M
+  D=M
+  @SP
+  M=M-1
+  D=M-D
+  @TRUE
+  D ; JLT
+  @FALSE
+  0 ; JEQ
+
+  (TRUE)
+  @SP
+  M=0
+  @END
+  0 ; JMP
+
+  (FALSE)
+  @SP
+  M=-1
+  @END
+  0 ; JMP
+  
+  (END)
+  @SP
+  M=M+1
+  """
+  AND_COMMAND="""
+  @SP
+  M=M-1
+  A=M
+  D=M
+  @SP
+  M=M-1
+  A=M
+  M=D&M
+  @SP
+  M=M+1
+  """
+  OR_COMMAND="""
+  @SP
+  M=M-1
+  A=M
+  D=M
+  @SP
+  M=M-1
+  A=M
+  M=D|M
+  @SP
+  M=M+1
+  """
+  NOT_COMMAND="""
+  @SP
+  M=M-1
+  A=M
+  M=!M
+  @SP
+  M=M+1
+  """
+  
 
 def parse(vm_file_lines, output_file):
     
